@@ -1,0 +1,29 @@
+.head{
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+    font-size: x-large;
+    color: black;
+}
+
+.search{
+    width: 20%;
+}
+
+#city{
+    padding: 10px;
+    font-size: larger;
+    border-radius: 8px;
+}
+
+.searchButton{
+    padding: 15px;
+    font-size: larger;
+    border-radius: 8px;
+    margin: 5px;
+    width: 200px;
+}
+
+label {
+    font-size: x-large;
+}
