@@ -27,3 +27,12 @@
 label {
     font-size: x-large;
 }
+
+#today{
+    font-size: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
