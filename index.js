@@ -2,6 +2,8 @@
 const key = "901280234eaf7bf09a3fe10472e067e6";
 var submit = document.querySelector('#form');
 var query = document.querySelector('#city');
+var localHistory = [];
+
 
 //Date
 
@@ -16,6 +18,7 @@ let currentDate = `${month}/${day}/${year}`;
 
 const getWeather = async (event) => {
     event.preventDefault();
+    stored(query)
     const cityName = query.value;
     var city = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${key}`
     const response = await fetch(city);
@@ -32,11 +35,11 @@ const getWeather = async (event) => {
     renderFive(data)
   }
 
-submit.addEventListener('submit', getWeather)
 
 const renderToday = (weather) => {
   var today = document.querySelector('#today')
   today.innerHTML = ""
+  today.removeAttribute('hidden')
   var city = weather.name
   var temp = weather.main.temp
   var wind = weather.wind.speed
@@ -66,6 +69,7 @@ const renderFive = (data) => {
 
     var forecast = document.querySelector(`#day${i}`)
     forecast.innerHTML = ""
+    forecast.removeAttribute('hidden')
 
     var date = data.list[i].dt_txt
     var temp = data.list[i].main.temp
@@ -91,3 +95,32 @@ const renderFive = (data) => {
     forecast.append(datePrint,iconPrint,tempPrint, windPrint,humidityPrint)
   }
 }
+
+const stored = (query) => {
+  if (localHistory.includes(query.value)){
+    return
+  } else {
+  localHistory.push(query.value);
+  localStorage.setItem('history', JSON.stringify(localHistory));
+}}
+
+const renderHistory = () => {
+  var render = document.querySelector("#history")
+  render.innerHTML = "";
+  localHistory.forEach((search) => {
+    render.innerHTML = "<option>" + render.innerHTML;
+    render.querySelector("option").innerText = search;
+  });
+};
+
+const localInit = () =>{
+  var storageHistory = localStorage.getItem('history')
+  if (storageHistory) {
+    localHistory = JSON.parse(storageHistory)}
+    console.log(localHistory)
+  }
+
+localInit()
+submit.addEventListener('submit', getWeather)
+
+query.addEventListener('focus', renderHistory)
