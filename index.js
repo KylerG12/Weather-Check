@@ -29,6 +29,7 @@ const getWeather = async (event) => {
     const fiveDay = await fetch(api)
     const data = await fiveDay.json();
     console.log(data)
+    renderFive(data)
   }
 
 submit.addEventListener('submit', getWeather)
@@ -58,4 +59,35 @@ const renderToday = (weather) => {
   windPrint.textContent = `Current wind speed: ${wind} MPH`
   humidityPrint.textContent = `Current humidity: ${humidity}%`
   today.append(currentDate,cityPrint,tempPrint, windPrint, humidityPrint)
+}
+
+const renderFive = (data) => {
+  for (var i = 0; i < 5; i++) {
+
+    var forecast = document.querySelector(`#day${i}`)
+    forecast.innerHTML = ""
+
+    var date = data.list[i].dt_txt
+    var temp = data.list[i].main.temp
+    var wind = data.list[i].wind.speed
+    var humidity = data.list[i].main.humidity
+    var icon = data.list[i].weather[0].icon
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + (1 + i));
+
+    var datePrint = document.createElement('p')
+    var tempPrint = document.createElement('p')
+    var windPrint = document.createElement('p')
+    var humidityPrint = document.createElement('p')
+    var iconPrint = document.createElement('img');
+    var iconSRC =  `https://openweathermap.org/img/wn/${icon}@2x.png`  
+    iconPrint.setAttribute('src', iconSRC)
+
+    datePrint.textContent = tomorrow.toDateString()  
+    tempPrint.textContent = `Temp: ${temp}°F`
+    windPrint.textContent = `Wind speed: ${wind} MPH`
+    humidityPrint.textContent = `Humidity: ${humidity}%`
+    
+    forecast.append(datePrint,iconPrint,tempPrint, windPrint,humidityPrint)
+  }
 }

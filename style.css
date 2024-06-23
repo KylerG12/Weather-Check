@@ -36,3 +36,49 @@ label {
     width: fit-content;
     padding: 10px;
 }
+
+#forecast{
+    font-size: 35px;
+    padding: 10px;
+    display: flex
+}
+
+#day0{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
+
+#day1{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
+
+#day2{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
+
+#day3{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
+
+#day4{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+    width: fit-content;
+    padding: 10px;
+}
